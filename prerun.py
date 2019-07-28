@@ -6,6 +6,7 @@ import numpy as np
 import pickle
 
 data_dir = 'data/'
+bert_dir = data_dir+"bert-base-uncased/"
 bert_model = 'https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-pytorch_model.bin'
 bert_config = 'https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json'
 bert_vocab = 'https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt'
@@ -14,18 +15,20 @@ stsb_dataset = '''https://firebasestorage.googleapis.com/v0/b/mtl-sentence-repre
 
 if not os.path.isdir(data_dir):
     os.mkdir(data_dir)
+if not os.path.isdir(bert_dir):
+    os.mkdir(bert_dir)
 
 def download_models():
     print("Downloading bert-base-uncased")
-    urllib.request.urlretrieve(bert_model, data_dir+"pytorch_model.bin")
+    urllib.request.urlretrieve(bert_model, bert_dir+"pytorch_model.bin")
     print("Saved as bert-base-uncased-pytorch_model.bin")
 
     print("Downloading config for bert-base-uncased")
-    urllib.request.urlretrieve(bert_config, data_dir+"bert_config.json")
+    urllib.request.urlretrieve(bert_config, bert_dir+"bert_config.json")
     print("Saved config")
 
     print("Downloading uncased vocab")
-    urllib.request.urlretrieve(bert_vocab, data_dir+'vocab.txt')
+    urllib.request.urlretrieve(bert_vocab, bert_dir+'vocab.txt')
     print("Saved vocab")
 
     print("Downloading and extracting STS-B")
@@ -35,3 +38,6 @@ def download_models():
         zip_ref.extractall(data_dir)
     os.remove(stsb_zip)
     print("\tCompleted!")
+
+
+download_models()

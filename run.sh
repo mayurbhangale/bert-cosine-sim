@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #1. prepare data 
-data_dir=~/dev/data/glue
+data_dir=data/
 task_name=STS-B
 
-pretrain_dir=~/dev/nlp/bert/models/bert-base-uncased
+pretrain_dir=data/bert-base-uncased
 vocab_fpath=${pretrain_dir}/vocab.txt
 
 output_dir=./finetune/

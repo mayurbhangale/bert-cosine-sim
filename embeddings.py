@@ -100,8 +100,7 @@ class BertCosineSimilarity():
         return config, fweight
     
     def loadPreTrainedModel(self, emb_size = 1024):
-        #config, fweight = self.getModelConfig(cache_root / self.cache_dir)
-        config, fweight = self.getModelConfig("/Users/deepampatel/Desktop/deepam/Timepass/bert-cosine-sim/data/bert-base-uncased")
+        config, fweight = self.getModelConfig(cache_root / self.cache_dir)
         emb_size = emb_size
         self.model = bert_models.BertPairSim(config, emb_size)
         self.doLoadModel(fweight)
@@ -142,7 +141,7 @@ class BertCosineSimilarity():
                     load(child, prefix + name + '.')
         start_prefix = ''
         if not hasattr(self.model, 'bert') and any(s.startswith('bert.') for s in state_dict.keys()):
-            starext_prefix = 'bert.'
+            start_prefix = 'bert.'
         load(self.model,prefix=start_prefix)
         if len(error_msgs) > 0:
             raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(

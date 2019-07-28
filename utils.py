@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import os
 import shutil
-
+from pathlib import Path
 import logging
 import re
 import requests
@@ -13,6 +13,7 @@ import tempfile
 log = logging.getLogger(__file__)
 log.setLevel(logging.INFO)
 
+from urllib.parse import urlparse
 from tqdm import tqdm as _tqdm
 cache_root = os.path.expanduser(os.path.join("~", ".bert-test"))
 

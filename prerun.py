@@ -7,6 +7,7 @@ import pickle
 
 data_dir = 'data/'
 bert_dir = data_dir+"bert-base-uncased/"
+
 bert_model = 'https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-pytorch_model.bin'
 bert_config = 'https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json'
 bert_vocab = 'https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt'
@@ -15,6 +16,7 @@ stsb_dataset = '''https://firebasestorage.googleapis.com/v0/b/mtl-sentence-repre
 
 if not os.path.isdir(data_dir):
     os.mkdir(data_dir)
+
 if not os.path.isdir(bert_dir):
     os.mkdir(bert_dir)
 
@@ -29,6 +31,7 @@ def download_models():
 
     print("Downloading uncased vocab")
     urllib.request.urlretrieve(bert_vocab, bert_dir+'vocab.txt')
+
     print("Saved vocab")
 
     print("Downloading and extracting STS-B")
@@ -41,3 +44,5 @@ def download_models():
 
 
 download_models()
+
+ 
